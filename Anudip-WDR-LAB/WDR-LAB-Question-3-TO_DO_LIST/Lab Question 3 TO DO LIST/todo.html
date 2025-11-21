@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List App</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        li {
+            margin-top: 10px;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>To-Do List App</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+
+    <h3>Tasks:</h3>
+    <ul id="taskList"></ul>
+
+    <script>
+        let tasks = []; // array to store tasks
+
+        function addTask() {
+            let taskText = document.getElementById("taskInput").value;
+
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            // Add task to array
+            tasks.push(taskText);
+
+            // Update UI
+            displayTasks();
+
+            // Clear input
+            document.getElementById("taskInput").value = "";
+        }
+
+        function displayTasks() {
+            let list = document.getElementById("taskList");
+            list.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `
+                    <span id="task-${index}">${task}</span>
+                    <button onclick="markComplete(${index})">Mark as Complete</button>
+                    <button onclick="deleteTask(${index})">Delete</button>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function markComplete(index) {
+            let taskItem = document.getElementById("task-" + index);
+            taskItem.classList.add("completed");
+        }
+
+        function deleteTask(index) {
+            // Remove from array
+            tasks.splice(index, 1);
+
+            // Refresh UI
+            displayTasks();
+        }
+    </script>
+
+</body>
+</html>

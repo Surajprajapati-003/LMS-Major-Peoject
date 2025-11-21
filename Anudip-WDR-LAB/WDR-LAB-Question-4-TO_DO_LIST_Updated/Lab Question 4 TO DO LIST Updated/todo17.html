@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List App</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        li {
+            margin-top: 10px;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>To-Do List App (17 Oct Lab)</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+
+    <h3>Tasks:</h3>
+    <ul id="taskList"></ul>
+
+    <script>
+        let tasks = []; // Array to store tasks
+
+        function addTask() {
+            let taskText = document.getElementById("taskInput").value;
+
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            tasks.push(taskText);  // Add to array
+            displayTasks();        // Update list
+
+            document.getElementById("taskInput").value = ""; // clear field
+        }
+
+        function displayTasks() {
+            let list = document.getElementById("taskList");
+            list.innerHTML = "";  // Clear old list
+
+            tasks.forEach((task, index) => {
+                let li = document.createElement("li");
+
+                li.innerHTML = `
+                    <span id="task-${index}">${task}</span>
+                    <button id="btn-${index}" onclick="markComplete(${index})">Mark as Complete</button>
+                    <button onclick="deleteTask(${index})">Delete</button>
+                `;
+
+                list.appendChild(li);
+            });
+        }
+
+        function markComplete(index) {
+            let taskItem = document.getElementById("task-" + index);
+            let button = document.getElementById("btn-" + index);
+
+            // Green text
+            taskItem.classList.add("completed");
+
+            // Change button text
+            button.innerText = "Completed";
+
+            // Disable button
+            button.disabled = true;
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1); // Remove from array
+            displayTasks();         // Refresh UI
+        }
+    </script>
+
+</body>
+</html>

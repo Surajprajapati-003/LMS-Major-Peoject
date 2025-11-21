@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Math Calculator</h1>
+
+        <!-- Simple Interest -->
+        <div class="card">
+            <h2>Simple Interest Calculator</h2>
+            <input type="number" id="p" placeholder="Enter Principal (P)">
+            <input type="number" id="r" placeholder="Enter Rate (R)">
+            <input type="number" id="t" placeholder="Enter Time (T)">
+            <button onclick="calculateSI()">Calculate SI</button>
+            <p id="siResult"></p>
+        </div>
+
+        <!-- Area of Circle -->
+        <div class="card">
+            <h2>Area of Circle Calculator</h2>
+            <input type="number" id="radius" placeholder="Enter Radius">
+            <button onclick="calculateArea()">Calculate Area</button>
+            <p id="areaResult"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
