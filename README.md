@@ -1,16 +1,39 @@
-# React + Vite
+# Course Management API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple Node.js + Express + MySQL API for Courses, Faculties and Modules.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Copy `.env.example` to `.env` and fill DB credentials.
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create the database and tables:
+   ```
+   mysql -u root -p < sql/schema.sql
+   ```
+4. Start server:
+   ```
+   npm run dev
+   ```
 
-## React Compiler
+## Endpoints (summary)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Courses
+- POST /api/courses
+- GET /api/courses
+- GET /api/courses/:id
+- DELETE /api/courses/:id
+- POST /api/courses/:courseId/modules
+- POST /api/courses/:courseId/faculty
 
-## Expanding the ESLint configuration
+### Faculty
+- POST /api/faculty
+- GET /api/faculty
+- GET /api/faculty/:id
+- DELETE /api/faculty/:id
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Modules
+- (created via course module endpoint)
+
